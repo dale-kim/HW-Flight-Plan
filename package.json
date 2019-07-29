@@ -1,0 +1,26 @@
+{
+  "name": "flight-plan-package",
+  "version": "1.0.0",
+  "description": "July 29-31, 2019\r RESTful API with Node.js, Express, and MongoDB",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.0-beta2",
+    "mongoose": "^5.6.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dale-kim/HW-Flight-Plan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dale-kim/HW-Flight-Plan/issues"
+  },
+  "homepage": "https://github.com/dale-kim/HW-Flight-Plan#readme"
+}
