@@ -5,16 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
 </head>
 <body>
     <div id="side-pane" class="panel panel-default">
         <div class="panel-body">
-            <form data-flight-plan="form">
+            <form>
                 <div class="form-group">
                     <label for="tailNumber">Tail Number</label>
                     <input class="form-control" name="number" autofocus required pattern = "[a-zA-Z\s]+"/>
@@ -37,12 +33,18 @@
                     <label for="latitude">Latitude:</label>
                     <input class="form-control" name="lat">
                 </div>
-                <div data-way-point="way-points">
-
-                </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button @click="addWayPoint" type="submit" class="btn btn-default">Submit</button>
+        <div class="way-point-list">
+            <ul>
+                <li v-for="waypoint in waypoints">
+                    <p>Name: {{waypoint.name}}</p>
+                    <p>Longitude: {{waypoint.long}}</p>
+                    <p>Latitude: {{waypoint.lat}}</p>
+                </li>
+            </ul>
+        </div>
     </div>
     <div id="map-view">
         <h2>Flight Plan</h2>
@@ -53,11 +55,12 @@
             </div>
         </div>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="scripts/vue.js"></script>
+    <script src="scripts/main.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
-    <script src="waypointlist.js" charset="utf-8"></script>
-    <script src="formhandler.js" charset="utf-8"></script>
-    <script src="datastore.js" charset="utf-8"></script>
-    <script src="main.js" charset="utf-8"></script>
 </body>
 </html>
