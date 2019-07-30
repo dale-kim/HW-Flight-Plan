@@ -1,0 +1,16 @@
+body{
+    display: flex;
+    flex-direction: horizontal;
+    padding: 25px;
+}
+#side-pane{
+    margin: 40px;
+}
+input{
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.way-point-list ul{
+    list-style: none;
+}
