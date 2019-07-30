@@ -14,3 +14,6 @@ input{
 .way-point-list ul{
     list-style: none;
 }
+.waypoints{
+    float: left;
+}

@@ -19,29 +19,32 @@
         </div>
         
         <div class="panel panel-default">
-            <div class="panel-body">
-                <h4>Way Points: </h4>
-                <div class="form-group">
-                    <label for="Name">Way-Point Name:</label>
-                    <input class="form-control" name="name">
+            <form id="myForm">
+                <div class="panel-body">
+                    <h4>Way Points: </h4>
+                    <div class="form-group">
+                        <label for="Name">Way-Point Name:</label>
+                        <input class="form-control" name="name" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude">Longitude:</label>
+                        <input class="form-control" name="long" id="longitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="latitude">Latitude:</label>
+                        <input class="form-control" name="lat" id="latitude">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="longitude">Longitude:</label>
-                    <input class="form-control" name="long">
-                </div>
-                <div class="form-group">
-                    <label for="latitude">Latitude:</label>
-                    <input class="form-control" name="lat">
-                </div>
-            </div>
+                <button @click="addWayPoint" type="submit" class="btn btn-default">Submit</button>
+            </form>
         </div>
-        <button @click="addWayPoint" type="submit" class="btn btn-default">Submit</button>
         <div class="way-point-list">
             <ul>
-                <li v-for="waypoint in waypoints">
+                <li v-for="waypoint in waypoints" class="waypoints">
                     <p>Name: {{waypoint.name}}</p>
                     <p>Longitude: {{waypoint.long}}</p>
                     <p>Latitude: {{waypoint.lat}}</p>
+                    <hr size="2px">
                 </li>
             </ul>
         </div>
