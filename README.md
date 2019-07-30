@@ -43,22 +43,28 @@ Give an example
 ```
 
 ## Deployment
-
-Add additional notes about how to deploy this on a live system
+Open Google Compute VM SSH in browser
+1. Start Mongo DB
+```
+sudo mongod
+```
+2. Start backend app (in a new connection)
+```
+node index.js
+```
 
 ## Built With
-Placeholders only
-* [React](https://reactjs.org/) - The web library used
-* [MongoDB](https://www.mongodb.com/) - Database
+* [Vue](https://vuejs.org/) - Frontend
 * [Express](https://expressjs.com/) - Backend
+* [MongoDB](https://www.mongodb.com/) - Database
+* [Google Compute](https://cloud.google.com/compute/) - Cloud Hosting
 
 
 ## Contributors
 
 * **Dale Kim** - *H354298 Software Engineer Intern* - [Dale Kim](https://github.com/dale-kim)
-* **Name 2** - *details* - [Name 2](https://github.com/)
-* **Name 3** - *details* - [Name 3](https://github.com/)
-* **Name 4** - *details* - [Name 4](https://github.com/)
+* **Oshadha Gunasekara** - *H354198 Systems Engineer Intern* - [Oshadha Gunasekara](https://github.com/osguus)
+* **Dalen Romelien** - *H358809 Software Engineer Intern* - [Dalen Romelien](https://github.com/dromelie)
 
 
 <!-- Template for README.md -->
