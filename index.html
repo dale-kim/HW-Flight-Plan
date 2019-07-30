@@ -1,121 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="src/css/style.css">
+    <title>Weather Dashboard</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-lCjpg1xbw-nsCc11Si8Ldg2LKYizqI4&libraries=places"></script>
   </head>
   <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <form>
-                    <div class="form-group">
-                        <label for="inputEmail">Email</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-check-label"><input type="checkbox"> Remember me</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                </form>
-
-                <!-- <div id="side-pane" class="panel panel-default">
-                    <div class="panel-body">
-                        <form data-flight-plan="form">
-                            <div class="form-group">
-                                <label for="tailNumber">Tail Number</label>
-                                <input class="form-control" name="number" autofocus required pattern = "[a-zA-Z\s]+"/>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h4>Way Points: </h4>
-                            <div class="form-group">
-                                <label for="Name">Way-Point Name:</label>
-                                <input class="form-control" name="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="longitude">Longitude:</label>
-                                <input class="form-control" name="long">
-                            </div>
-                            <div class="form-group">
-                                <label for="latitude">Latitude:</label>
-                                <input class="form-control" name="lat">
-                            </div>
-                            <div data-way-point="way-points">
-            
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </div> -->
-            </div>
-
-            <div class="col-lg-9">
-                <!-- <h1>Map</h1> -->
-                <div id="map"></div>
-            </div>
-        </div>
-    </div>
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script>
-        var map;
-        var poly;
-        var path;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: {lat: 39.0976114, lng:-98.7670928},
-                mapTypeId: 'terrain'
-            });
-
-            poly = new google.maps.Polyline({
-                strokeColor: '#000000',
-                strokeOpacity: 1.0,
-                strokeWeight: 5
-            });
-
-            poly.setMap(map);
-
-            // Add a listener for the click event
-            map.addListener('click', addLatLng);
-        }
-
-        function addLatLng(event) {
-            path = poly.getPath();
-
-            // Because path is an MVCArray, we can simply append a new coordinate
-            // and it will automatically appear.
-            path.push(event.latLng);
-
-            // Add a new marker at the new plotted point on the polyline.
-            var marker = new google.maps.Marker({
-                position: event.latLng,
-                title: '#' + path.getLength(),
-                map: map
-            });
-        }
-    </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQFa8RFxz-JsGEBglYjvSQ2dEyWPy1av0&callback=initMap">
-    </script>
+    <div id="app"></div>
+    <script src="/dist/build.js"></script>
   </body>
 </html>
