@@ -1,6 +1,6 @@
 /* MONGOOSE SETUP */
 const mongoose = require('mongoose')
-const uri = 'mongodb://localhost:27017/flight-plan'
+const uri = 'mongodb://127.0.0.1:27017/flight-plan'
 mongoose.connect(uri, {useNewUrlParser: true})
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${uri}`)
@@ -11,17 +11,18 @@ mongoose.connection.on('error', err => {
 const planeSchema = new mongoose.Schema({ 
     name: String, 
     tail: String,
-    maintenance_date: String, 
+    date: String, 
     condition: String 
 })
-const Plane = mongoose.model('Plane', planeSchema)
+const planes = mongoose.model('planes', planeSchema)
 
 /* CALLBACK DEFINES */
 const findByName = (req, res) => {
-    Plane.findOne({name: req.params.name}, (error, results) => {
+    planes.findOne({name: req.params.name}, (error, results) => {
         if (error) {
             throw error
         }
+        console.log(results)
         res.status(200).json(results)
     })
 }
@@ -39,7 +40,7 @@ const addPlane = (req, res) => {
     const newPlane = {
         name: req.body.name,
         tail: req.body.tail,
-        maintenance_date: req.body.maintenance_date,
+        date: req.body.date,
         condition: req.body.condition
     }
     mongoose.connection.collection('planes').insertOne(newPlane), (error, res)=> {

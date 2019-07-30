@@ -43,14 +43,21 @@ Give an example
 ```
 
 ## Deployment
-
-Add additional notes about how to deploy this on a live system
+Open Google Compute VM SSH in browser
+1. Start Mongo DB
+```
+sudo mongod
+```
+2. Start backend app (in a new connection)
+```
+node index.js
+```
 
 ## Built With
 * [Vue](https://vuejs.org/) - Frontend
 * [Express](https://expressjs.com/) - Backend
 * [MongoDB](https://www.mongodb.com/) - Database
-* [AWS](https://aws.amazon.com/) - Cloud Hosting
+* [Google Compute](https://cloud.google.com/compute/) - Cloud Hosting
 
 
 ## Contributors
