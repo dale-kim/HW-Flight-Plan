@@ -3,7 +3,7 @@
     <div class="container-fluid" id="app">
       <div class="row">
         <div id="sidebar" class="col-lg-3 col-md-3 col-sm-4 col-xs-12 sidebar">
-          <side-panel></side-panel>
+          <side-panel :waypoints="waypoints"></side-panel>
         </div>
 
         <div
@@ -20,72 +20,73 @@
 </template>
 
 <script>
-import Content from './components/Content.vue';
-import SidePane from './components/SidePane.vue';
+import Content from "./components/Content.vue";
+import SidePane from "./components/SidePane.vue";
 import GoogleMap from "./components/GoogleMap";
 
 export default {
-  name: 'app',
+  name: "app",
   props: [],
   components: {
-    'dashboard-content': Content,
-    'side-panel': SidePane,
-    'google-map': GoogleMap
+    "dashboard-content": Content,
+    "side-panel": SidePane,
+    "google-map": GoogleMap
   },
   data() {
     return {
       weatherDetails: false,
-      location: '', // raw location from input
-      lat: '', // raw latitude from google maps api response
-      long: '', // raw longitude from google maps api response
-      completeWeatherApi: '', // weather api string with lat and long
-      rawWeatherData: '', // raw response from weather api
+      location: "", // raw location from input
+      lat: "", // raw latitude from google maps api response
+      long: "", // raw longitude from google maps api response
+      completeWeatherApi: "", // weather api string with lat and long
+      rawWeatherData: "", // raw response from weather api
       currentWeather: {
-        full_location: '', // for full address
-        formatted_lat: '', // for N/S
-        formatted_long: '', // for E/W
-        time: '',
-        temp: '',
+        full_location: "", // for full address
+        formatted_lat: "", // for N/S
+        formatted_long: "", // for E/W
+        time: "",
+        temp: "",
         todayHighLow: {
-          todayTempHigh: '',
-          todayTempHighTime: '',
-          todayTempLow: '',
-          todayTempLowTime: ''
+          todayTempHigh: "",
+          todayTempHighTime: "",
+          todayTempLow: "",
+          todayTempLowTime: ""
         },
-        summary: '',
-        possibility: ''
+        summary: "",
+        possibility: ""
       },
+      waypoints: [],
       tempVar: {
         tempToday: [
           // gets added dynamically by this.getSetHourlyTempInfoToday()
-        ],
+        ]
       },
       highlights: {
-        uvIndex: '',
-        visibility: '',
+        uvIndex: "",
+        visibility: "",
         windStatus: {
-          windSpeed: '',
-          windDirection: '',
-          derivedWindDirection: ''
-        },
+          windSpeed: "",
+          windDirection: "",
+          derivedWindDirection: ""
+        }
       }
     };
   },
   methods: {
     // Some utility functions
     convertToTitleCase: function(str) {
-      str = str.toLowerCase().split(' ');
+      str = str.toLowerCase().split(" ");
       for (var i = 0; i < str.length; i++) {
         str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
       }
-      return str.join(' ');
+      return str.join(" ");
     },
     formatPossibility: function(str) {
-      str = str.toLowerCase().split('-');
+      str = str.toLowerCase().split("-");
       for (var i = 0; i < str.length; i++) {
         str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
       }
-      return str.join(' ');
+      return str.join(" ");
     },
     unixToHuman: function(timezone, timestamp) {
       /* READ THIS BEFORE JUDGING & DEBUGGING
@@ -96,16 +97,16 @@ export default {
       The code is correct, the problem is with the API.
       May be later on I will add some padding to tackle missing values.
       */
-      var moment = require('moment-timezone'); // for handling date & time
+      var moment = require("moment-timezone"); // for handling date & time
       var decipher = new Date(timestamp * 1000);
       var human = moment(decipher)
         .tz(timezone)
-        .format('llll');
-      var timeArray = human.split(' ');
+        .format("llll");
+      var timeArray = human.split(" ");
       var timeNumeral = timeArray[4];
       var timeSuffix = timeArray[5];
-      var justTime = timeNumeral + ' ' + timeSuffix;
-      var monthDateArray = human.split(',');
+      var justTime = timeNumeral + " " + timeSuffix;
+      var monthDateArray = human.split(",");
       var monthDate = monthDateArray[1].trim();
       return {
         fullTime: human,
@@ -127,24 +128,24 @@ export default {
     },
     deriveWindDir: function(windDir) {
       var wind_directions_array = [
-        { minVal: 0, maxVal: 30, direction: 'N' },
-        { minVal: 31, maxVal: 45, direction: 'NNE' },
-        { minVal: 46, maxVal: 75, direction: 'NE' },
-        { minVal: 76, maxVal: 90, direction: 'ENE' },
-        { minVal: 91, maxVal: 120, direction: 'E' },
-        { minVal: 121, maxVal: 135, direction: 'ESE' },
-        { minVal: 136, maxVal: 165, direction: 'SE' },
-        { minVal: 166, maxVal: 180, direction: 'SSE' },
-        { minVal: 181, maxVal: 210, direction: 'S' },
-        { minVal: 211, maxVal: 225, direction: 'SSW' },
-        { minVal: 226, maxVal: 255, direction: 'SW' },
-        { minVal: 256, maxVal: 270, direction: 'WSW' },
-        { minVal: 271, maxVal: 300, direction: 'W' },
-        { minVal: 301, maxVal: 315, direction: 'WNW' },
-        { minVal: 316, maxVal: 345, direction: 'NW' },
-        { minVal: 346, maxVal: 360, direction: 'NNW' }
+        { minVal: 0, maxVal: 30, direction: "N" },
+        { minVal: 31, maxVal: 45, direction: "NNE" },
+        { minVal: 46, maxVal: 75, direction: "NE" },
+        { minVal: 76, maxVal: 90, direction: "ENE" },
+        { minVal: 91, maxVal: 120, direction: "E" },
+        { minVal: 121, maxVal: 135, direction: "ESE" },
+        { minVal: 136, maxVal: 165, direction: "SE" },
+        { minVal: 166, maxVal: 180, direction: "SSE" },
+        { minVal: 181, maxVal: 210, direction: "S" },
+        { minVal: 211, maxVal: 225, direction: "SSW" },
+        { minVal: 226, maxVal: 255, direction: "SW" },
+        { minVal: 256, maxVal: 270, direction: "WSW" },
+        { minVal: 271, maxVal: 300, direction: "W" },
+        { minVal: 301, maxVal: 315, direction: "WNW" },
+        { minVal: 316, maxVal: 345, direction: "NW" },
+        { minVal: 346, maxVal: 360, direction: "NNW" }
       ];
-      var wind_direction = '';
+      var wind_direction = "";
       for (var i = 0; i < wind_directions_array.length; i++) {
         if (
           windDir >= wind_directions_array[i].minVal &&
@@ -158,14 +159,14 @@ export default {
 
     // Some basic action oriented functions
     makeInputEmpty: function() {
-      this.$refs.input.value = '';
+      this.$refs.input.value = "";
     },
     makeTempVarTodayEmpty: function() {
       this.tempVar.tempToday = [];
     },
     detectEnterKeyPress: function() {
       var input = this.$refs.input;
-      input.addEventListener('keyup', function(event) {
+      input.addEventListener("keyup", function(event) {
         event.preventDefault();
         var enterKeyCode = 13;
         if (event.keyCode === enterKeyCode) {
@@ -175,7 +176,7 @@ export default {
     },
     locationEntered: function() {
       var input = this.$refs.input;
-      if (input.value === '') {
+      if (input.value === "") {
         this.location = "New York";
       } else {
         this.location = this.convertToTitleCase(input.value);
@@ -183,7 +184,7 @@ export default {
       this.makeInputEmpty();
       this.makeTempVarTodayEmpty();
     },
-    
+
     getCoordinates: function() {
       this.locationEntered();
       var loc = this.location;
@@ -220,11 +221,11 @@ export default {
       // Remember to beautify lat for N/S
       if (coordinates.lat > 0) {
         this.currentWeather.formatted_lat =
-          (Math.round(coordinates.lat * 10000) / 10000).toString() + '°N';
+          (Math.round(coordinates.lat * 10000) / 10000).toString() + "°N";
       } else if (coordinates.lat < 0) {
         this.currentWeather.formatted_lat =
           (-1 * (Math.round(coordinates.lat * 10000) / 10000)).toString() +
-          '°S';
+          "°S";
       } else {
         this.currentWeather.formatted_lat = (
           Math.round(coordinates.lat * 10000) / 10000
@@ -233,11 +234,11 @@ export default {
       // Remember to beautify long for N/S
       if (coordinates.long > 0) {
         this.currentWeather.formatted_long =
-          (Math.round(coordinates.long * 10000) / 10000).toString() + '°E';
+          (Math.round(coordinates.long * 10000) / 10000).toString() + "°E";
       } else if (coordinates.long < 0) {
         this.currentWeather.formatted_long =
           (-1 * (Math.round(coordinates.long * 10000) / 10000)).toString() +
-          '°W';
+          "°W";
       } else {
         this.currentWeather.formatted_long = (
           Math.round(coordinates.long * 10000) / 10000
@@ -247,20 +248,20 @@ export default {
     fixWeatherApi: async function() {
       await this.setFormatCoordinates();
       var weatherApi =
-        'https://csm.fusioncharts.com/files/assets/wb/wb-data.php?src=darksky&lat=' +
+        "https://csm.fusioncharts.com/files/assets/wb/wb-data.php?src=darksky&lat=" +
         this.lat +
-        '&long=' +
+        "&long=" +
         this.long;
       this.completeWeatherApi = weatherApi;
     },
     fetchWeatherData: async function() {
       await this.fixWeatherApi();
-      var axios = require('axios'); // for handling weather api promise
+      var axios = require("axios"); // for handling weather api promise
       var weatherApiResponse = await axios.get(this.completeWeatherApi);
       if (weatherApiResponse.status === 200) {
         this.rawWeatherData = weatherApiResponse.data;
       } else {
-        alert('Hmm... Seems like our weather experts are busy!');
+        alert("Hmm... Seems like our weather experts are busy!");
       }
     },
 
@@ -282,15 +283,15 @@ export default {
       var currentSummary = this.convertToTitleCase(
         this.rawWeatherData.currently.summary
       );
-      if (currentSummary.includes(' And')) {
-        currentSummary = currentSummary.replace(' And', ',');
+      if (currentSummary.includes(" And")) {
+        currentSummary = currentSummary.replace(" And", ",");
       }
       this.currentWeather.summary = currentSummary;
     },
     getSetPossibility: function() {
       var possible = this.formatPossibility(this.rawWeatherData.daily.icon);
-      if (possible.includes(' And')) {
-        possible = possible.replace(' And', ',');
+      if (possible.includes(" And")) {
+        possible = possible.replace(" And", ",");
       }
       this.currentWeather.possibility = possible;
     },
@@ -332,9 +333,11 @@ export default {
         var hourlyOnlyTime = hourlyTimeAllTypes.onlyTime;
         var hourlyMonthDate = hourlyTimeAllTypes.onlyMonthDate;
         if (todayMonthDate === hourlyMonthDate) {
-          var hourlyObject = { hour: '', temp: '' };
+          var hourlyObject = { hour: "", temp: "" };
           hourlyObject.hour = hourlyOnlyTime;
-          hourlyObject.temp = this.fahToCel(hourlyData[i].temperature).toString();
+          hourlyObject.temp = this.fahToCel(
+            hourlyData[i].temperature
+          ).toString();
           this.tempVar.tempToday.push(hourlyObject);
           /*
           Since we are using array.push(), we are just adding elements
@@ -422,11 +425,23 @@ export default {
       this.organizeCurrentWeatherInfo();
       this.organizeTodayHighlights();
       this.getSetHourlyTempInfoToday();
-    },
+    }
   },
   mounted: async function() {
-    this.location = 'New York';
-    await this.organizeAllDetails();     
+    this.location = "New York";
+    this.waypoints = [
+      {
+        name: "A",
+        long: 43.135341,
+        lat: -7.6134634
+      },
+      {
+        name: "B",
+        long: 34.832112,
+        lat: -98.138652
+      }
+    ];
+    await this.organizeAllDetails();
   }
 };
 </script>

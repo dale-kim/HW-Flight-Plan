@@ -15,19 +15,19 @@
           <h4>Way Points:</h4>
           <div class="form-group">
             <label for="Name">Way-Point Name:</label>
-            <input class="form-control" name="name" id="name" />
+            <input class="form-control" name="name" id="name" ref="wp_name" />
           </div>
           <div class="form-group">
             <label for="longitude">Longitude:</label>
-            <input class="form-control" name="long" id="longitude" />
+            <input class="form-control" name="long" id="longitude" ref="wp_long" />
           </div>
           <div class="form-group">
             <label for="latitude">Latitude:</label>
-            <input class="form-control" name="lat" id="latitude" />
+            <input class="form-control" name="lat" id="latitude" ref="wp_lat" />
           </div>
         </div>
-        <button @click="addWayPoint" type="submit" class="btn btn-default">Submit</button>
       </form>
+      <button @click="addWayPoint">Submit</button>
     </div>
     <div class="way-point-list">
       <ul>
@@ -43,41 +43,33 @@
 
 <script>
 export default {
+  props: ["waypoints"],
   data() {
-    return {
-      // default to Montreal to keep it simple
-      // change this to whatever makes sense
-      center: { lat: 45.508, lng: -73.587 },
-      markers: [],
-      places: [],
-      waypoints: [
-        {
-          name: "A",
-          long: 43.135341,
-          lat: -7.6134634
-        },
-        {
-          name: "B",
-          long: 34.832112,
-          lat: -98.138652
-        }
-      ],
-      currentPlace: null
-    };
+    return {};
   },
 
   methods: {
     addWayPoint: function() {
-      waypoints.push({
-        name: this.name,
-        long: this.longitude,
-        lat: this.latitude
+      this.waypoints.push({
+        name: this.$refs.wp_name.value,
+        long: this.$refs.wp_long.value,
+        lat: this.$refs.wp_lat.value
       });
-      document.getElementById("myForm").reset();
     }
   }
 };
 </script>
 
 <style>
+#side-pane {
+  margin: 40px;
+}
+input {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+.way-point-list ul {
+  list-style: none;
+}
 </style>

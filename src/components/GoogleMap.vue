@@ -1,22 +1,6 @@
 <template>
-  <div>
-    <!-- <div>
-      <h2>Search and add a pin</h2>
-      <label>
-        <gmap-autocomplete
-          @place_changed="setPlace">
-        </gmap-autocomplete>
-        <button @click="addMarker">Add</button>
-      </label>
-      <br/>
-
-    </div> -->
-    <!-- <br> -->
-    <gmap-map
-      :center="center"
-      :zoom="12"
-      style="width:100%;  height: 100vh;"
-    >
+  <!-- <div>
+    <gmap-map :center="center" :zoom="12" style="width:100%; height: 100vh;">
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
@@ -24,7 +8,9 @@
         @click="center=m.position"
       ></gmap-marker>
     </gmap-map>
-  </div>
+  </div>-->
+
+  <div id="map"></div>
 </template>
 
 <script>
@@ -37,12 +23,25 @@ export default {
       center: { lat: 45.508, lng: -73.587 },
       markers: [],
       places: [],
-      currentPlace: null
+      currentPlace: null,
+      map: null
     };
   },
 
-  mounted() {
+  mounted: function() {
     this.geolocate();
+    const element = document.getElementById("map");
+    const options = {
+      zoom: 14,
+      center: this.center
+    };
+    this.map = new google.maps.Map(element, options);
+
+    this.map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 14,
+      center: this.center,
+      mapTypeId: "terrain"
+    });
   },
 
   methods: {
@@ -73,3 +72,12 @@ export default {
   }
 };
 </script>
+
+<style>
+#map {
+  width: 100%;
+  height: 100vh;
+  /* margin: 0 auto;
+  background: gray; */
+}
+</style>
