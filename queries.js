@@ -1,6 +1,6 @@
 /* MONGOOSE SETUP */
 const mongoose = require('mongoose')
-const uri = 'mongodb://127.0.0.1:27017/flight-plan'
+const uri = 'mongodb://127.0.0.1:27017/flight-plans'
 mongoose.connect(uri, {useNewUrlParser: true})
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${uri}`)
@@ -22,7 +22,6 @@ const findByName = (req, res) => {
         if (error) {
             throw error
         }
-        console.log(results)
         res.status(200).json(results)
     })
 }
