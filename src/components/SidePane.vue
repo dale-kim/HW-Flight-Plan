@@ -71,5 +71,7 @@ input {
 }
 .way-point-list ul {
   list-style: none;
+  overflow-y: scroll;
+  height: 250px;
 }
 </style>
