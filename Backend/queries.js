@@ -11,7 +11,7 @@ mongoose.connection.on('error', err => {
 const planeSchema = new mongoose.Schema({ 
     name: String, 
     tail: String,
-    date: String, 
+    date: [String], 
     condition: String 
 })
 const planes = mongoose.model('planes', planeSchema)
@@ -26,8 +26,17 @@ const findByName = (req, res) => {
     })
 }
 
+const getAllPlanes = (req, res) => {
+    planes.find({}, (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).json(results)
+    })
+}
+
 const removePlane = (req, res) => {
-    Plane.deleteOne({name: req.params.name}, (error, results) => {
+    planes.deleteOne({name: req.params.name}, (error, results) => {
         if (error) {
             throw error
         }
@@ -36,6 +45,7 @@ const removePlane = (req, res) => {
 }
 
 const addPlane = (req, res) => {
+    console.log(req.body)
     const newPlane = {
         name: req.body.name,
         tail: req.body.tail,
@@ -48,8 +58,26 @@ const addPlane = (req, res) => {
     res.status(200).send('Successfully added new plane')
 }
 
+const updatePlane = (req, res) => {
+    mongoose.connection.collection('planes').findOneAndUpdate({name: req.body.name}, {$push:{date:req.body.date}}, (err, doc) => {
+        if (err) {
+            console.log("Something went wrong when updating data!");
+        }
+        console.log(doc);
+        res.status(200).send('Successfully updated plane')
+    });
+}
 module.exports = {
     findByName,
     addPlane,
-    removePlane
+    removePlane,
+    getAllPlanes,
+    updatePlane,
 }
+
+// Static pre-inserted mock database
+// db.planes.insertOne({"name":"Boeing 777x","tail":"D-ABCE","date":["July 4 2019"],"condition":"good"})
+// db.planes.insertOne({"name":"Airbus A380","tail":"W-XYZ","date":["December 25 2018"],"condition":"moderate"})
+// db.planes.insertOne({"name":"Boeing 737 MAX","tail":"666","date":["April 20 1962"],"condition":"bad"})
+
+
