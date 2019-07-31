@@ -42,7 +42,16 @@ const findByName = (req, res) => {
 }
 
 const getAllPlanes = (req, res) => {
-    planes.find({}, (error, results) => {
+    planes.find({"airport":{'$exists':0}}, (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).json(results)
+    })
+}
+
+const getAllCoords = (req, res) => {
+    planes.find({"airport":{'$exists':1}}, (error, results) => {
         if (error) {
             throw error
         }
@@ -74,6 +83,7 @@ const addPlane = (req, res) => {
 }
 
 const updatePlane = (req, res) => {
+    console.log(req.body)
     mongoose.connection.collection('planes').findOneAndUpdate({ name: req.body.name }, { $push: { date: req.body.date } }, (err, doc) => {
         if (err) {
             console.log("Something went wrong when updating data!");
@@ -88,7 +98,8 @@ module.exports = {
     removePlane,
     getAllPlanes,
     updatePlane,
-    getWeatherByCity
+    getWeatherByCity,
+    getAllCoords
 }
 
 // Static pre-inserted mock database
