@@ -53,7 +53,7 @@ class App extends Component {
     })
   })
 
-  // Default React Lifecycle function (refer in React documentation)
+  // Default React Lifecycle function
   componentDidMount() {
     this.map.setTarget('map')
     this.map.on('click', this.showWeather.bind(this))
@@ -61,7 +61,7 @@ class App extends Component {
     this.fetchData()
   }
   
-  // Gets all data from backend in one go (asynchronous). Read about promises if confused.
+  // Gets all data from backend in one go (asynchronous). react Promises
   fetchData() {
     fetch(`${servername}/getallplanes`)
     .then(res => res.json())
@@ -76,7 +76,7 @@ class App extends Component {
     })
   }
 
-  // Helper function to add features into openlayers.
+  // Helper function to add features into openlayers
   addFeatures() {
     this.state.waypoints.forEach(waypoint => {
       let longitude = parseFloat(waypoint.lonlat[0])
@@ -88,13 +88,13 @@ class App extends Component {
     })
   }
 
-  // Adds a <MenuItem> object. Helper function called by map().
+  // Adds a <MenuItem> object. Helper function called by map()
   addPlane(plane, index) {
     return <MenuItem value={index}>{plane.name}</MenuItem>
   }
 
   // Handles change. Read up on event listeners. Looks for event target (based on id), 
-  // then sets value based on new value.
+  // then sets value based on new value
   handleChange(event) {
     console.log(event.target.name)
     this.setState({
@@ -116,7 +116,7 @@ class App extends Component {
     })
   }
 
-  // Event listener that waits for an 'onClick' event from OpenLayers.
+  // Event listener that waits for an 'onClick' event from OpenLayers
   showWeather(event) {
     let features = this.map.getFeaturesAtPixel(event.pixel)
     if(!features) return 
@@ -131,12 +131,12 @@ class App extends Component {
     })
   }
 
-  // Helper function called by map to output maintenance records in typography.
+  // Helper function called by map to output maintenance records in typography
   outputMaintenanceRecords(date) {
     return <Typography variant='subtitle2'>{date}</Typography>
   }
 
-  // Handler for onClick event from 'submit maintenance' button.
+  // Handler for onClick event from 'submit maintenance' button
   submitMaintenance() {
     if(this.state.selectedPlane =='null' ) {
       alert('Select a plane in Aircraft Info FIRST.')
@@ -156,7 +156,7 @@ class App extends Component {
     }).then(()=>this.fetchData())
   }
 
-  // React Lifecycle method. Read up on React if confused.
+  // React Lifecycle method
   render() {
     return (
       <div className="App">
