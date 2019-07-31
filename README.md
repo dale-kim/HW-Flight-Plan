@@ -4,7 +4,7 @@ July 29-31, 2019
 
 
 ## Deployment
-######BACK END
+###### BACK END
 1. Open Google Compute VM SSH in browser
 2. Start Mongo DB
 ```
@@ -14,7 +14,7 @@ sudo mongod
 ```
 node index.js
 ```
-######FRONT END
+###### FRONT END
 1. Navigate to frontend directory
 ```
 npm start
