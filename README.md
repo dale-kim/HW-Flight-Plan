@@ -17,6 +17,7 @@ node index.js
 ###### FRONT END
 1. Navigate to frontend directory
 ```
+npm install
 npm start
 ```
 
