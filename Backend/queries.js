@@ -25,7 +25,7 @@ const getWeatherByCity = (req, res) => {
         var data = {
             "description": description,
             "wind-speed": (wind.speed).toString() + " m/s",
-            "wind-degrees": (wind.deg).toString()
+            // "wind-degrees": (wind.deg).toString()
         }
         res.json(data);
     });

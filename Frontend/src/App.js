@@ -169,8 +169,8 @@ class App extends Component {
             <Typography variant='subtitle2'>{(this.state.currentWeather != 'null') ? this.state.currentWeather.description : 'No airport selected.'}</Typography>
             <Typography variant='body1'>Wind Speed:</Typography>
             <Typography variant='subtitle2'>{(this.state.currentWeather != 'null') ? this.state.currentWeather['wind-speed'] : 'No airport selected.'}</Typography>
-            <Typography variant='body1'>Wind Degrees:</Typography>
-            <Typography variant='subtitle2'>{(this.state.currentWeather != 'null') ? this.state.currentWeather['wind-degrees']: 'No airport selected.'}</Typography>
+            {/* <Typography variant='body1'>Wind Degrees:</Typography> */}
+            {/* <Typography variant='subtitle2'>{(this.state.currentWeather != 'null') ? this.state.currentWeather['wind-degrees']: 'No airport selected.'}</Typography> */}
           </div>
           <div id="AircraftInfo">
             <Typography variant="h6">Aircraft Info</Typography>
