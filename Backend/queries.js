@@ -108,7 +108,7 @@ module.exports = {
 // db.planes.insertOne({"name":"Boeing 737 MAX","tail":"666","date":["April 20 1962"],"condition":"bad"})
 
 // db.planes.insertOne({"airport":"LAX", "lonlat":["-118.4085", "33.9427"]})
-// db.planes.insertOne({"airport":"PHX", "lonlat":["-111.9186", "32.9908"]})
+// db.planes.insertOne({"airport":"PHX", "lonlat":["-112.007788", "33.437269"]})
 // db.planes.insertOne({"airport":"AUS", "lonlat":["-97.6686", "30.1899"]})
 // db.planes.insertOne({"airport":"ATL", "lonlat":["-84.419853", "33.6404"]})
 // db.planes.insertOne({"airport":"JFK", "lonlat":["-73.7781", "40.6413"]})
