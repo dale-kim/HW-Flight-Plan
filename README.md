@@ -6,6 +6,7 @@ July 29-31, 2019
 ## Deployment
 ###### BACK END
 1. Open Google Compute VM SSH in browser
+Note: Google Compute server is currently being run from a personal account. Change endpoint address in the frontend accordingly for further use. App will not work properly after the current free credits on the cloud expire (Aug-16-2019).
 2. Start Mongo DB
 ```
 sudo mongod
