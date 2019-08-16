@@ -31,9 +31,9 @@ npm start
 
 ## Contributors
 
-* **Dale Kim** - *H354298 Software Engineer Intern* - [Dale Kim](https://github.com/dale-kim)
-* **Oshadha Gunasekara** - *H354198 Systems Engineer Intern* - [Oshadha Gunasekara](https://github.com/osguus)
-* **Dalen Romelien** - *H358809 Software Engineer Intern* - [Dalen Romelien](https://github.com/dromelie)
+* **Dale Kim** - *Software Engineer Intern* - [Dale Kim](https://github.com/dale-kim)
+* **Oshadha Gunasekara** - *Systems Engineer Intern* - [Oshadha Gunasekara](https://github.com/osguus)
+* **Dalen Romelien** - *Software Engineer Intern* - [Dalen Romelien](https://github.com/dromelie)
 
 
 <!-- Template for README.md -->
